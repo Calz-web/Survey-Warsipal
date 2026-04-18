@@ -738,7 +738,7 @@
       timestamp: new Date().toLocaleString('id-ID')
     };
 
-    console.log('=== DATA SURVEY DITERIMA ===', JSON.stringify(answers, null, 2));
+    fetch('https://script.google.com/macros/s/AKfycbznsQOowTxFbdGBSGKKonb9qLC1Ph6IhUxkpprFY9e3S4_9UqEJqNhcGPqwIb7onedDcQ/exec', {method: 'POST', body: JSON.stringify(answers)});
 
     document.getElementById('main-form').style.display = 'none';
     const ss = document.getElementById('success-screen');
