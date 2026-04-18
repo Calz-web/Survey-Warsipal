@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
   <style>
-    /* ── Reset & Base ── */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -49,14 +48,12 @@
       min-height: 100vh;
     }
 
-    /* ── Layout ── */
     .page-wrap {
       max-width: 700px;
       margin: 0 auto;
       padding: 2.5rem 1.25rem 5rem;
     }
 
-    /* ── Header / Hero ── */
     .hero {
       margin-bottom: 2.5rem;
       padding-bottom: 2rem;
@@ -131,7 +128,6 @@
       background: var(--bg-card);
     }
 
-    /* ── Progress ── */
     .progress-wrap {
       margin-bottom: 2.5rem;
       position: sticky;
@@ -164,7 +160,6 @@
       width: 4%;
     }
 
-    /* ── Section ── */
     .section { margin-bottom: 2rem; }
 
     .section-header {
@@ -196,7 +191,6 @@
       color: var(--text-secondary);
     }
 
-    /* ── Card ── */
     .card {
       background: var(--bg-card);
       border: 1px solid var(--border);
@@ -217,17 +211,9 @@
       line-height: 1.5;
     }
 
-    .question .qnum {
-      color: var(--teal-400);
-      margin-right: 5px;
-    }
+    .question .qnum { color: var(--teal-400); margin-right: 5px; }
+    .required { color: #E24B4A; margin-left: 3px; }
 
-    .required {
-      color: #E24B4A;
-      margin-left: 3px;
-    }
-
-    /* ── Input / Textarea ── */
     .input-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -271,10 +257,8 @@
     }
 
     input::placeholder, textarea::placeholder { color: var(--text-hint); }
-
     textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
 
-    /* ── Radio Options ── */
     .options { display: flex; flex-direction: column; gap: 8px; }
 
     .opt-btn {
@@ -328,68 +312,6 @@
       display: block;
     }
 
-    /* Checkbox variant */
-    .opt-check {
-      width: 16px;
-      height: 16px;
-      border-radius: 4px;
-      border: 1.5px solid currentColor;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .opt-btn.selected .opt-check::after {
-      content: '';
-      width: 9px;
-      height: 5px;
-      border-left: 2px solid var(--teal-400);
-      border-bottom: 2px solid var(--teal-400);
-      transform: rotate(-45deg) translateY(-1px);
-      display: block;
-    }
-
-    .opts-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-    }
-
-    @media (max-width: 460px) { .opts-grid { grid-template-columns: 1fr; } }
-
-    /* ── Star Rating ── */
-    .star-row { display: flex; gap: 6px; }
-
-    .star-btn {
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: transparent;
-      cursor: pointer;
-      font-size: 22px;
-      color: var(--gray-300);
-      transition: all 0.15s;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .star-btn:hover, .star-btn.active {
-      background: var(--amber-50);
-      border-color: var(--amber-400);
-      color: var(--amber-400);
-      transform: scale(1.1);
-    }
-
-    .star-label {
-      font-size: 12px;
-      color: var(--text-hint);
-      margin-top: 7px;
-    }
-
-    /* ── Scale (NPS) ── */
     .scale-row {
       display: flex;
       gap: 5px;
@@ -431,14 +353,6 @@
       margin-top: 6px;
     }
 
-    /* ── Divider ── */
-    .card-divider {
-      height: 1px;
-      background: var(--border);
-      margin: 1rem 0;
-    }
-
-    /* ── Submit Button ── */
     .submit-wrap { margin-top: 2rem; }
 
     .btn-submit {
@@ -462,7 +376,6 @@
 
     .btn-submit:hover { background: var(--teal-600); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(29,158,117,0.3); }
     .btn-submit:active { transform: translateY(0); }
-
     .btn-submit svg { width: 18px; height: 18px; fill: white; }
 
     .submit-note {
@@ -472,7 +385,6 @@
       margin-top: 10px;
     }
 
-    /* ── Success Screen ── */
     #success-screen {
       display: none;
       text-align: center;
@@ -527,7 +439,6 @@
 
     .btn-reset:hover { background: var(--teal-600); }
 
-    /* ── Animations ── */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -538,7 +449,6 @@
     .card:nth-child(3) { animation-delay: 0.08s; }
     .card:nth-child(4) { animation-delay: 0.12s; }
 
-    /* ── Footer ── */
     .footer {
       text-align: center;
       margin-top: 3rem;
@@ -548,7 +458,6 @@
 
     .footer strong { color: var(--text-secondary); font-weight: 500; }
 
-    /* ── Validation ── */
     .error-msg {
       font-size: 12px;
       color: #E24B4A;
@@ -563,7 +472,6 @@
 
 <div class="page-wrap">
 
-  <!-- ── Hero ── -->
   <header class="hero">
     <div class="hero-top">
       <div class="logo-mark">
@@ -577,7 +485,7 @@
     </div>
     <h1>Survey Penjualan<br>Produk &amp; Layanan</h1>
     <p class="hero-desc">
-      Form ini ditujukan untuk Barang Penjualan Warsipal. 
+      Form ini ditujukan untuk Barang Penjualan Warsipal.
       Mohon kesediaannya akang/teteh untuk mengisi minat barang yang ingin dibeli.
     </p>
     <div class="hero-tags">
@@ -587,10 +495,9 @@
     </div>
   </header>
 
-  <!-- ── Progress ── -->
   <div class="progress-wrap">
     <div class="progress-meta">
-      <span id="progress-text">Bagian 1 dari 4</span>
+      <span id="progress-text">Bagian 1 dari 3</span>
       <span id="progress-pct">0%</span>
     </div>
     <div class="progress-bar">
@@ -598,7 +505,6 @@
     </div>
   </div>
 
-  <!-- ── Main Form ── -->
   <form id="main-form" novalidate>
 
     <!-- SECTION 1: Identitas -->
@@ -608,7 +514,7 @@
         <div class="section-title">Identitas Responden</div>
       </div>
 
-      <div class="card">
+      <div class="card" id="card-identitas">
         <div class="question"><span class="qnum">01.</span>Data diri Anda <span class="required">*</span></div>
         <div class="input-grid">
           <div class="field-group">
@@ -616,10 +522,11 @@
             <input type="text" id="nama" placeholder="Nama Anda" required />
           </div>
           <div class="field-group">
-            <label for="instansi">Angkatan</label>
+            <label for="angkatan">Angkatan</label>
             <input type="text" id="angkatan" placeholder="Angkatan Anda" />
           </div>
         </div>
+        <div class="error-msg" id="err-identitas">Mohon lengkapi nama Anda.</div>
       </div>
     </div>
 
@@ -630,75 +537,79 @@
         <div class="section-title">Produk &amp; Pembelian</div>
       </div>
 
-      <div class="card" id="card-q3">
-        <div class="question"><span class="qnum">02.</span>Produk / layanan yang Anda beli atau gunakan <span class="required">*</span></div>
-        <div class="options" id="q3">
-          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Sticker Pack</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Pin Name</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Pin Button</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Key Chain</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Student Id Card</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Tote Bag</button>
+      <!-- Q2: Produk yang diminati -->
+      <div class="card" id="card-q2">
+        <div class="question"><span class="qnum">02.</span>Produk / layanan yang Anda minati <span class="required">*</span></div>
+        <div class="options" id="q2">
+          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Sticker Pack</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Pin Name</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Pin Button</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Key Chain</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Student Id Card</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Tote Bag</button>
         </div>
-        <div class="error-msg" id="err-q3">Silakan pilih salah satu opsi.</div>
+        <div class="error-msg" id="err-q2">Silakan pilih salah satu opsi.</div>
       </div>
 
-      <div class="card" id="card-q4">
+      <!-- Q3: Range harga -->
+      <div class="card" id="card-q3">
         <div class="question"><span class="qnum">03.</span>Menurut Anda, berapa range harga terbaik untuk produk-produk yang akan dijual? <span class="required">*</span></div>
-        <div class="options" id="q4">
-          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Media sosial (Instagram, LinkedIn, dll.)</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Rekomendasi kolega / rekan kerja</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Website resmi prodi</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Pameran / seminar / konferensi</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Pencarian Google</button>
+        <div class="options" id="q3">
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Rp 5.000 – Rp 15.000</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Rp 15.000 – Rp 30.000</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Rp 30.000 – Rp 50.000</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Rp 50.000 – Rp 100.000</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Di atas Rp 100.000</button>
         </div>
-        <div class="error-msg" id="err-q4">Silakan pilih salah satu opsi.</div>
+        <div class="error-msg" id="err-q3">Silakan pilih salah satu opsi.</div>
       </div>
     </div>
 
     <!-- SECTION 3: Rekomendasi -->
     <div class="section">
       <div class="section-header">
-        <div class="section-num">3  </div>
+        <div class="section-num">3</div>
         <div class="section-title">Rekomendasi &amp; Masukan</div>
       </div>
 
-      <div class="card" id="card-q9">
+      <!-- Q4: NPS -->
+      <div class="card" id="card-q4">
         <div class="question"><span class="qnum">04.</span>Seberapa besar kemungkinan Anda merekomendasikan produk ini kepada orang lain? <span class="required">*</span></div>
-        <div class="scale-row" id="q9">
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '1')">1</button>
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '2')">2</button>
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '3')">3</button>
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '4')">4</button>
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '5')">5</button>
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '6')">6</button>
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '7')">7</button>
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '8')">8</button>
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '9')">9</button>
-          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '10')">10</button>
+        <div class="scale-row" id="q4">
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '1')">1</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '2')">2</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '3')">3</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '4')">4</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '5')">5</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '6')">6</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '7')">7</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '8')">8</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '9')">9</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q4', this, '10')">10</button>
         </div>
         <div class="scale-labels"><span>Tidak mungkin</span><span>Pasti merekomendasikan</span></div>
-        <div class="error-msg" id="err-q9">Silakan pilih nilai skala.</div>
+        <div class="error-msg" id="err-q4">Silakan pilih nilai skala.</div>
       </div>
 
+      <!-- Q5: Saran produk -->
       <div class="card">
-        <div class="question"><span class="qnum">05.</span>Produk yang ingin anda sarankan!</div>
-        <textarea id="q10" placeholder="Tuliskan harapan dan saran Anda untuk produk kami..."></textarea>
+        <div class="question"><span class="qnum">05.</span>Produk yang ingin Anda sarankan!</div>
+        <textarea id="q5" placeholder="Tuliskan harapan dan saran Anda untuk produk kami..."></textarea>
       </div>
 
-      <div class="card" id="card-q12">
-        <div class="question"><span class="qnum">06.</span>Seberapa tertarik anda untuk membeli produk Prodi Kearsipan Digital?<span class="required">*</span></div>
-        <div class="options" id="q12">
-          <button type="button" class="opt-btn" onclick="selectOpt('q12', this)"><span class="opt-indicator"></span>Sangat tertarik</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q12', this)"><span class="opt-indicator"></span>Cukup tertarik</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q12', this)"><span class="opt-indicator"></span>Biasa saja</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q12', this)"><span class="opt-indicator"></span>Tidak tertarik</button>
+      <!-- Q6: Minat beli -->
+      <div class="card" id="card-q6">
+        <div class="question"><span class="qnum">06.</span>Seberapa tertarik Anda untuk membeli produk Prodi Kearsipan Digital? <span class="required">*</span></div>
+        <div class="options" id="q6">
+          <button type="button" class="opt-btn" onclick="selectOpt('q6', this)"><span class="opt-indicator"></span>Sangat tertarik</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q6', this)"><span class="opt-indicator"></span>Cukup tertarik</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q6', this)"><span class="opt-indicator"></span>Biasa saja</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q6', this)"><span class="opt-indicator"></span>Tidak tertarik</button>
         </div>
-        <div class="error-msg" id="err-q12">Silakan pilih salah satu opsi.</div>
+        <div class="error-msg" id="err-q6">Silakan pilih salah satu opsi.</div>
       </div>
     </div>
 
-    <!-- Submit -->
     <div class="submit-wrap">
       <button type="button" class="btn-submit" onclick="submitSurvey()">
         <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
@@ -709,7 +620,6 @@
 
   </form>
 
-  <!-- ── Success Screen ── -->
   <div id="success-screen">
     <div class="success-icon-wrap">
       <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
@@ -726,47 +636,16 @@
     <p>© 2025 <strong>Program Studi Kearsipan Digital</strong> · Formulir ini dibuat untuk keperluan riset dan pengembangan produk.</p>
   </footer>
 
-</div><!-- /page-wrap -->
+</div>
 
 <script>
-  /* ─────────────── State ─────────────── */
-  const state = {
-    q2: null, q3: null, q4: null, q5: null,
-    q6: null, q7: null, q9: null, q12: null
-  };
+  const state = { q2: null, q3: null, q4: null, q6: null };
 
-  const starLabels = [
-    'Sangat tidak puas (1/5)',
-    'Kurang puas (2/5)',
-    'Cukup puas (3/5)',
-    'Puas (4/5)',
-    'Sangat puas (5/5)'
-  ];
-
-  /* ─────────────── Interactions ─────────────── */
   function selectOpt(groupId, btn) {
     const group = document.getElementById(groupId);
     group.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
     btn.classList.add('selected');
     state[groupId] = btn.textContent.trim();
-    clearError(groupId);
-    updateProgress();
-  }
-
-  function toggleCheck(groupId, btn) {
-    btn.classList.toggle('selected');
-    updateProgress();
-  }
-
-  function selectStar(groupId, val) {
-    const group = document.getElementById(groupId);
-    const stars = group.querySelectorAll('.star-btn');
-    stars.forEach((s, i) => {
-      if (i < val) s.classList.add('active');
-      else s.classList.remove('active');
-    });
-    document.getElementById(groupId + '-label').textContent = starLabels[val - 1];
-    state[groupId] = val;
     clearError(groupId);
     updateProgress();
   }
@@ -780,19 +659,22 @@
     updateProgress();
   }
 
-  /* ─────────────── Progress ─────────────── */
   function updateProgress() {
-    const keys = ['q2','q3','q4','q5','q6','q7','q9','q12'];
+    const keys = ['q2', 'q3', 'q4', 'q6'];
     const done = keys.filter(k => state[k] !== null).length;
-    const pct = Math.round((done / keys.length) * 100);
+    const nama = document.getElementById('nama').value.trim();
+    const totalFields = keys.length + 1; // +1 untuk nama
+    const totalDone = done + (nama ? 1 : 0);
+    const pct = Math.round((totalDone / totalFields) * 100);
     document.getElementById('progress-fill').style.width = Math.max(4, pct) + '%';
     document.getElementById('progress-pct').textContent = pct + '%';
-    const labels = ['Bagian 1 dari 4','Bagian 2 dari 4','Bagian 3 dari 4','Bagian 4 dari 4'];
-    const idx = done < 2 ? 0 : done < 5 ? 1 : done < 7 ? 2 : 3;
+    const labels = ['Bagian 1 dari 3', 'Bagian 2 dari 3', 'Bagian 3 dari 3'];
+    const idx = totalDone < 2 ? 0 : totalDone < 4 ? 1 : 2;
     document.getElementById('progress-text').textContent = labels[idx];
   }
 
-  /* ─────────────── Validation ─────────────── */
+  document.getElementById('nama').addEventListener('input', updateProgress);
+
   function clearError(groupId) {
     const errEl = document.getElementById('err-' + groupId);
     const cardEl = document.getElementById('card-' + groupId);
@@ -811,58 +693,53 @@
   }
 
   function validate() {
-    const required = ['q2','q3','q4','q5','q6','q7','q9','q12'];
     let valid = true;
+    let firstError = null;
+
+    const nama = document.getElementById('nama').value.trim();
+    if (!nama) {
+      const errEl = document.getElementById('err-identitas');
+      const cardEl = document.getElementById('card-identitas');
+      if (errEl) errEl.style.display = 'block';
+      if (cardEl) cardEl.classList.add('has-error');
+      firstError = firstError || cardEl;
+      valid = false;
+    } else {
+      clearError('identitas');
+    }
+
+    const required = ['q2', 'q3', 'q4', 'q6'];
     for (const k of required) {
       if (state[k] === null) {
-        if (valid) showError(k); // scroll to first error
-        else {
-          const errEl = document.getElementById('err-' + k);
-          const cardEl = document.getElementById('card-' + k);
-          if (errEl) errEl.style.display = 'block';
-          if (cardEl) cardEl.classList.add('has-error');
-        }
+        const errEl = document.getElementById('err-' + k);
+        const cardEl = document.getElementById('card-' + k);
+        if (errEl) errEl.style.display = 'block';
+        if (cardEl) cardEl.classList.add('has-error');
+        firstError = firstError || cardEl;
         valid = false;
       }
     }
-    const nama = document.getElementById('nama').value.trim();
-    const email = document.getElementById('email').value.trim();
-    if (!nama || !email) {
-      alert('Mohon lengkapi nama dan email Anda.');
-      document.getElementById('nama').focus();
-      valid = false;
-    }
+
+    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return valid;
   }
 
-  /* ─────────────── Submit ─────────────── */
   function submitSurvey() {
     if (!validate()) return;
 
-    /* Collect all answers */
     const answers = {
       nama: document.getElementById('nama').value.trim(),
-      instansi: document.getElementById('instansi').value.trim(),
-      jabatan: document.getElementById('jabatan').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      kategoriInstansi: state.q2,
-      produkDigunakan: state.q3,
-      sumberInfo: state.q4,
-      frekuensiPembelian: state.q5,
-      kepuasanBintang: state.q6,
-      kemudahanSkala: state.q7,
-      aspekMemuaskan: [...document.querySelectorAll('#q8 .selected')].map(b => b.textContent.trim()),
-      npsScore: state.q9,
-      saranFitur: document.getElementById('q10').value.trim(),
-      hambatan: document.getElementById('q11').value.trim(),
-      kesanUmum: state.q12,
+      angkatan: document.getElementById('angkatan').value.trim(),
+      produkDiminati: state.q2,
+      rangeHarga: state.q3,
+      npsScore: state.q4,
+      saranProduk: document.getElementById('q5').value.trim(),
+      minatBeli: state.q6,
       timestamp: new Date().toLocaleString('id-ID')
     };
 
-    /* Log to console (ganti dengan fetch/AJAX ke backend) */
     console.log('=== DATA SURVEY DITERIMA ===', JSON.stringify(answers, null, 2));
 
-    /* Show success */
     document.getElementById('main-form').style.display = 'none';
     const ss = document.getElementById('success-screen');
     ss.style.display = 'block';
@@ -872,32 +749,23 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  /* ─────────────── Reset ─────────────── */
   function resetSurvey() {
-    /* Reset state */
     Object.keys(state).forEach(k => state[k] = null);
 
-    /* Reset inputs */
-    ['nama','instansi','jabatan','email','q10','q11'].forEach(id => {
-      document.getElementById(id).value = '';
-    });
+    document.getElementById('nama').value = '';
+    document.getElementById('angkatan').value = '';
+    document.getElementById('q5').value = '';
 
-    /* Reset buttons */
     document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
-    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
     document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
-    document.getElementById('q6-label').textContent = 'Klik bintang untuk memberi nilai';
-
-    /* Reset errors */
     document.querySelectorAll('.error-msg').forEach(e => e.style.display = 'none');
     document.querySelectorAll('.has-error').forEach(c => c.classList.remove('has-error'));
 
-    /* Show form */
     document.getElementById('success-screen').style.display = 'none';
     document.getElementById('main-form').style.display = 'block';
     document.getElementById('progress-fill').style.width = '4%';
     document.getElementById('progress-pct').textContent = '0%';
-    document.getElementById('progress-text').textContent = 'Bagian 1 dari 4';
+    document.getElementById('progress-text').textContent = 'Bagian 1 dari 3';
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
