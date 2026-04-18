@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Survey Penjualan Produk – Prodi Kearsipan Digital</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --teal-50:  #E1F5EE;
+      --teal-100: #9FE1CB;
+      --teal-400: #1D9E75;
+      --teal-600: #0F6E56;
+      --teal-800: #085041;
+      --amber-50: #FAEEDA;
+      --amber-400:#EF9F27;
+      --gray-50:  #F8F7F4;
+      --gray-100: #ECEAE3;
+      --gray-300: #C8C6BE;
+      --gray-500: #888780;
+      --gray-800: #2C2C2A;
+      --text-primary:   #1A1A18;
+      --text-secondary: #5A5A56;
+      --text-hint:      #9A9A96;
+      --border:         rgba(0,0,0,0.10);
+      --border-hover:   rgba(0,0,0,0.20);
+      --bg-page:        #F4F2ED;
+      --bg-card:        #FFFFFF;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+      --shadow-card: 0 1px 3px rgba(0,0,0,0.06), 0 4px 16px rgba(0,0,0,0.04);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.65;
+      color: var(--text-primary);
+      background: var(--bg-page);
+      min-height: 100vh;
+    }
+
+    /* ── Layout ── */
+    .page-wrap {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 2.5rem 1.25rem 5rem;
+    }
+
+    /* ── Header / Hero ── */
+    .hero {
+      margin-bottom: 2.5rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hero-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--teal-400);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .logo-mark svg { width: 22px; height: 22px; fill: white; }
+
+    .hero-meta {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--teal-600);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .hero-meta span {
+      color: var(--text-hint);
+      font-weight: 400;
+      letter-spacing: 0;
+      text-transform: none;
+      margin-left: 6px;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 5vw, 34px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+    }
+
+    .hero-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 540px;
+      line-height: 1.7;
+    }
+
+    .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 99px;
+      border: 0.5px solid var(--border);
+      color: var(--text-secondary);
+      background: var(--bg-card);
+    }
+
+    /* ── Progress ── */
+    .progress-wrap {
+      margin-bottom: 2.5rem;
+      position: sticky;
+      top: 0;
+      background: var(--bg-page);
+      padding: 12px 0 8px;
+      z-index: 10;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-hint);
+      margin-bottom: 7px;
+    }
+
+    .progress-bar {
+      height: 4px;
+      background: var(--gray-100);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--teal-400), var(--teal-600));
+      border-radius: 99px;
+      transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+      width: 4%;
+    }
+
+    /* ── Section ── */
+    .section { margin-bottom: 2rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 1rem;
+    }
+
+    .section-num {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: var(--teal-400);
+      color: white;
+      font-size: 12px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .section-title {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 0.875rem;
+      box-shadow: var(--shadow-card);
+      transition: border-color 0.2s;
+    }
+
+    .card:focus-within { border-color: var(--teal-400); }
+
+    .question {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .question .qnum {
+      color: var(--teal-400);
+      margin-right: 5px;
+    }
+
+    .required {
+      color: #E24B4A;
+      margin-left: 3px;
+    }
+
+    /* ── Input / Textarea ── */
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 500px) { .input-grid { grid-template-columns: 1fr; } }
+
+    .field-group { display: flex; flex-direction: column; gap: 5px; }
+
+    .field-group label {
+      font-size: 12px;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      background: var(--gray-50);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 9px 12px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--teal-400);
+      box-shadow: 0 0 0 3px rgba(29,158,117,0.12);
+      background: #fff;
+    }
+
+    input::placeholder, textarea::placeholder { color: var(--text-hint); }
+
+    textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+
+    /* ── Radio Options ── */
+    .options { display: flex; flex-direction: column; gap: 8px; }
+
+    .opt-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      text-align: left;
+      transition: all 0.15s;
+    }
+
+    .opt-btn:hover {
+      border-color: var(--teal-400);
+      background: var(--teal-50);
+      color: var(--teal-600);
+    }
+
+    .opt-btn.selected {
+      border-color: var(--teal-400);
+      background: var(--teal-50);
+      color: var(--teal-600);
+      font-weight: 500;
+    }
+
+    .opt-indicator {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid currentColor;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+
+    .opt-btn.selected .opt-indicator::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--teal-400);
+      display: block;
+    }
+
+    /* Checkbox variant */
+    .opt-check {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid currentColor;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .opt-btn.selected .opt-check::after {
+      content: '';
+      width: 9px;
+      height: 5px;
+      border-left: 2px solid var(--teal-400);
+      border-bottom: 2px solid var(--teal-400);
+      transform: rotate(-45deg) translateY(-1px);
+      display: block;
+    }
+
+    .opts-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 460px) { .opts-grid { grid-template-columns: 1fr; } }
+
+    /* ── Star Rating ── */
+    .star-row { display: flex; gap: 6px; }
+
+    .star-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      cursor: pointer;
+      font-size: 22px;
+      color: var(--gray-300);
+      transition: all 0.15s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .star-btn:hover, .star-btn.active {
+      background: var(--amber-50);
+      border-color: var(--amber-400);
+      color: var(--amber-400);
+      transform: scale(1.1);
+    }
+
+    .star-label {
+      font-size: 12px;
+      color: var(--text-hint);
+      margin-top: 7px;
+    }
+
+    /* ── Scale (NPS) ── */
+    .scale-row {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .scale-btn {
+      flex: 1;
+      min-width: 36px;
+      height: 38px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.15s;
+    }
+
+    .scale-btn:hover {
+      border-color: var(--teal-400);
+      color: var(--teal-600);
+      background: var(--teal-50);
+    }
+
+    .scale-btn.selected {
+      background: var(--teal-400);
+      border-color: var(--teal-400);
+      color: #fff;
+    }
+
+    .scale-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--text-hint);
+      margin-top: 6px;
+    }
+
+    /* ── Divider ── */
+    .card-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 1rem 0;
+    }
+
+    /* ── Submit Button ── */
+    .submit-wrap { margin-top: 2rem; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 15px 24px;
+      background: var(--teal-400);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      letter-spacing: 0.01em;
+    }
+
+    .btn-submit:hover { background: var(--teal-600); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(29,158,117,0.3); }
+    .btn-submit:active { transform: translateY(0); }
+
+    .btn-submit svg { width: 18px; height: 18px; fill: white; }
+
+    .submit-note {
+      text-align: center;
+      font-size: 12px;
+      color: var(--text-hint);
+      margin-top: 10px;
+    }
+
+    /* ── Success Screen ── */
+    #success-screen {
+      display: none;
+      text-align: center;
+      padding: 4rem 1rem;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .success-icon-wrap {
+      width: 80px;
+      height: 80px;
+      background: var(--teal-50);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+    }
+
+    .success-icon-wrap svg { width: 36px; height: 36px; fill: var(--teal-400); }
+
+    #success-screen h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    #success-screen p {
+      font-size: 15px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .btn-reset {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 2rem;
+      padding: 12px 28px;
+      background: var(--teal-400);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-reset:hover { background: var(--teal-600); }
+
+    /* ── Animations ── */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .card { animation: fadeIn 0.35s ease both; }
+    .card:nth-child(2) { animation-delay: 0.04s; }
+    .card:nth-child(3) { animation-delay: 0.08s; }
+    .card:nth-child(4) { animation-delay: 0.12s; }
+
+    /* ── Footer ── */
+    .footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-size: 12px;
+      color: var(--text-hint);
+    }
+
+    .footer strong { color: var(--text-secondary); font-weight: 500; }
+
+    /* ── Validation ── */
+    .error-msg {
+      font-size: 12px;
+      color: #E24B4A;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .card.has-error { border-color: #E24B4A; }
+  </style>
+</head>
+<body>
+
+<div class="page-wrap">
+
+  <!-- ── Hero ── -->
+  <header class="hero">
+    <div class="hero-top">
+      <div class="logo-mark">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 4h16v2H4V4zm0 4h10v2H4V8zm0 4h16v2H4v-2zm0 4h10v2H4v-2zm12 1l4-3-4-3v6z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="hero-meta">Prodi Kearsipan Digital <span>· Universitas</span></div>
+      </div>
+    </div>
+    <h1>Survey Penjualan<br>Produk &amp; Layanan</h1>
+    <p class="hero-desc">
+      Form ini ditujukan untuk Barang Penjualan Warsipal. 
+      Mohon kesediaannya akang/teteh untuk mengisi minat barang yang ingin dibeli.
+    </p>
+    <div class="hero-tags">
+      <span class="tag">± 5 menit</span>
+      <span class="tag">06 pertanyaan</span>
+      <span class="tag">Data terjaga kerahasiaannya</span>
+    </div>
+  </header>
+
+  <!-- ── Progress ── -->
+  <div class="progress-wrap">
+    <div class="progress-meta">
+      <span id="progress-text">Bagian 1 dari 4</span>
+      <span id="progress-pct">0%</span>
+    </div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill"></div>
+    </div>
+  </div>
+
+  <!-- ── Main Form ── -->
+  <form id="main-form" novalidate>
+
+    <!-- SECTION 1: Identitas -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">1</div>
+        <div class="section-title">Identitas Responden</div>
+      </div>
+
+      <div class="card">
+        <div class="question"><span class="qnum">01.</span>Data diri Anda <span class="required">*</span></div>
+        <div class="input-grid">
+          <div class="field-group">
+            <label for="nama">Nama Lengkap</label>
+            <input type="text" id="nama" placeholder="Nama Anda" required />
+          </div>
+          <div class="field-group">
+            <label for="instansi">Angkatan</label>
+            <input type="text" id="angkatan" placeholder="Angkatan Anda" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: Produk & Pembelian -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">2</div>
+        <div class="section-title">Produk &amp; Pembelian</div>
+      </div>
+
+      <div class="card" id="card-q3">
+        <div class="question"><span class="qnum">02.</span>Produk / layanan yang Anda beli atau gunakan <span class="required">*</span></div>
+        <div class="options" id="q3">
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Sticker Pack</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Pin Name</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Pin Button</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Key Chain</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Student Id Card</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q3', this)"><span class="opt-indicator"></span>Tote Bag</button>
+        </div>
+        <div class="error-msg" id="err-q3">Silakan pilih salah satu opsi.</div>
+      </div>
+
+      <div class="card" id="card-q4">
+        <div class="question"><span class="qnum">03.</span>Menurut Anda, berapa range harga terbaik untuk produk-produk yang akan dijual? <span class="required">*</span></div>
+        <div class="options" id="q4">
+          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Media sosial (Instagram, LinkedIn, dll.)</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Rekomendasi kolega / rekan kerja</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Website resmi prodi</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Pameran / seminar / konferensi</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q4', this)"><span class="opt-indicator"></span>Pencarian Google</button>
+        </div>
+        <div class="error-msg" id="err-q4">Silakan pilih salah satu opsi.</div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Rekomendasi -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">3  </div>
+        <div class="section-title">Rekomendasi &amp; Masukan</div>
+      </div>
+
+      <div class="card" id="card-q9">
+        <div class="question"><span class="qnum">04.</span>Seberapa besar kemungkinan Anda merekomendasikan produk ini kepada orang lain? <span class="required">*</span></div>
+        <div class="scale-row" id="q9">
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '1')">1</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '2')">2</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '3')">3</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '4')">4</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '5')">5</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '6')">6</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '7')">7</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '8')">8</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '9')">9</button>
+          <button type="button" class="scale-btn" onclick="selectScale('q9', this, '10')">10</button>
+        </div>
+        <div class="scale-labels"><span>Tidak mungkin</span><span>Pasti merekomendasikan</span></div>
+        <div class="error-msg" id="err-q9">Silakan pilih nilai skala.</div>
+      </div>
+
+      <div class="card">
+        <div class="question"><span class="qnum">05.</span>Produk yang ingin anda sarankan!</div>
+        <textarea id="q10" placeholder="Tuliskan harapan dan saran Anda untuk produk kami..."></textarea>
+      </div>
+
+      <div class="card" id="card-q12">
+        <div class="question"><span class="qnum">06.</span>Seberapa tertarik anda untuk membeli produk Prodi Kearsipan Digital?<span class="required">*</span></div>
+        <div class="options" id="q12">
+          <button type="button" class="opt-btn" onclick="selectOpt('q12', this)"><span class="opt-indicator"></span>Sangat tertarik</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q12', this)"><span class="opt-indicator"></span>Cukup tertarik</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q12', this)"><span class="opt-indicator"></span>Biasa saja</button>
+          <button type="button" class="opt-btn" onclick="selectOpt('q12', this)"><span class="opt-indicator"></span>Tidak tertarik</button>
+        </div>
+        <div class="error-msg" id="err-q12">Silakan pilih salah satu opsi.</div>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-wrap">
+      <button type="button" class="btn-submit" onclick="submitSurvey()">
+        <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+        Kirim Tanggapan Survey
+      </button>
+      <p class="submit-note">Data Anda aman dan hanya digunakan untuk keperluan pengembangan prodi.</p>
+    </div>
+
+  </form>
+
+  <!-- ── Success Screen ── -->
+  <div id="success-screen">
+    <div class="success-icon-wrap">
+      <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+    </div>
+    <h2>Terima Kasih!</h2>
+    <p>Tanggapan Anda telah berhasil kami terima.<br/>Masukan Anda sangat membantu pengembangan produk Program Studi Kearsipan Digital kami ke depan.</p>
+    <button class="btn-reset" onclick="resetSurvey()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.65 6.35A7.958 7.958 0 0012 4c-4.42 0-7.99 3.58-7.99 8s3.57 8 7.99 8c3.73 0 6.84-2.55 7.73-6h-2.08A5.99 5.99 0 0112 18c-3.31 0-6-2.69-6-6s2.69-6 6-6c1.66 0 3.14.69 4.22 1.78L13 11h7V4l-2.35 2.35z"/></svg>
+      Isi Survey Baru
+    </button>
+  </div>
+
+  <footer class="footer">
+    <p>© 2025 <strong>Program Studi Kearsipan Digital</strong> · Formulir ini dibuat untuk keperluan riset dan pengembangan produk.</p>
+  </footer>
+
+</div><!-- /page-wrap -->
+
+<script>
+  /* ─────────────── State ─────────────── */
+  const state = {
+    q2: null, q3: null, q4: null, q5: null,
+    q6: null, q7: null, q9: null, q12: null
+  };
+
+  const starLabels = [
+    'Sangat tidak puas (1/5)',
+    'Kurang puas (2/5)',
+    'Cukup puas (3/5)',
+    'Puas (4/5)',
+    'Sangat puas (5/5)'
+  ];
+
+  /* ─────────────── Interactions ─────────────── */
+  function selectOpt(groupId, btn) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    state[groupId] = btn.textContent.trim();
+    clearError(groupId);
+    updateProgress();
+  }
+
+  function toggleCheck(groupId, btn) {
+    btn.classList.toggle('selected');
+    updateProgress();
+  }
+
+  function selectStar(groupId, val) {
+    const group = document.getElementById(groupId);
+    const stars = group.querySelectorAll('.star-btn');
+    stars.forEach((s, i) => {
+      if (i < val) s.classList.add('active');
+      else s.classList.remove('active');
+    });
+    document.getElementById(groupId + '-label').textContent = starLabels[val - 1];
+    state[groupId] = val;
+    clearError(groupId);
+    updateProgress();
+  }
+
+  function selectScale(groupId, btn, val) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    state[groupId] = val;
+    clearError(groupId);
+    updateProgress();
+  }
+
+  /* ─────────────── Progress ─────────────── */
+  function updateProgress() {
+    const keys = ['q2','q3','q4','q5','q6','q7','q9','q12'];
+    const done = keys.filter(k => state[k] !== null).length;
+    const pct = Math.round((done / keys.length) * 100);
+    document.getElementById('progress-fill').style.width = Math.max(4, pct) + '%';
+    document.getElementById('progress-pct').textContent = pct + '%';
+    const labels = ['Bagian 1 dari 4','Bagian 2 dari 4','Bagian 3 dari 4','Bagian 4 dari 4'];
+    const idx = done < 2 ? 0 : done < 5 ? 1 : done < 7 ? 2 : 3;
+    document.getElementById('progress-text').textContent = labels[idx];
+  }
+
+  /* ─────────────── Validation ─────────────── */
+  function clearError(groupId) {
+    const errEl = document.getElementById('err-' + groupId);
+    const cardEl = document.getElementById('card-' + groupId);
+    if (errEl) errEl.style.display = 'none';
+    if (cardEl) cardEl.classList.remove('has-error');
+  }
+
+  function showError(groupId) {
+    const errEl = document.getElementById('err-' + groupId);
+    const cardEl = document.getElementById('card-' + groupId);
+    if (errEl) errEl.style.display = 'block';
+    if (cardEl) {
+      cardEl.classList.add('has-error');
+      cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function validate() {
+    const required = ['q2','q3','q4','q5','q6','q7','q9','q12'];
+    let valid = true;
+    for (const k of required) {
+      if (state[k] === null) {
+        if (valid) showError(k); // scroll to first error
+        else {
+          const errEl = document.getElementById('err-' + k);
+          const cardEl = document.getElementById('card-' + k);
+          if (errEl) errEl.style.display = 'block';
+          if (cardEl) cardEl.classList.add('has-error');
+        }
+        valid = false;
+      }
+    }
+    const nama = document.getElementById('nama').value.trim();
+    const email = document.getElementById('email').value.trim();
+    if (!nama || !email) {
+      alert('Mohon lengkapi nama dan email Anda.');
+      document.getElementById('nama').focus();
+      valid = false;
+    }
+    return valid;
+  }
+
+  /* ─────────────── Submit ─────────────── */
+  function submitSurvey() {
+    if (!validate()) return;
+
+    /* Collect all answers */
+    const answers = {
+      nama: document.getElementById('nama').value.trim(),
+      instansi: document.getElementById('instansi').value.trim(),
+      jabatan: document.getElementById('jabatan').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      kategoriInstansi: state.q2,
+      produkDigunakan: state.q3,
+      sumberInfo: state.q4,
+      frekuensiPembelian: state.q5,
+      kepuasanBintang: state.q6,
+      kemudahanSkala: state.q7,
+      aspekMemuaskan: [...document.querySelectorAll('#q8 .selected')].map(b => b.textContent.trim()),
+      npsScore: state.q9,
+      saranFitur: document.getElementById('q10').value.trim(),
+      hambatan: document.getElementById('q11').value.trim(),
+      kesanUmum: state.q12,
+      timestamp: new Date().toLocaleString('id-ID')
+    };
+
+    /* Log to console (ganti dengan fetch/AJAX ke backend) */
+    console.log('=== DATA SURVEY DITERIMA ===', JSON.stringify(answers, null, 2));
+
+    /* Show success */
+    document.getElementById('main-form').style.display = 'none';
+    const ss = document.getElementById('success-screen');
+    ss.style.display = 'block';
+    document.getElementById('progress-fill').style.width = '100%';
+    document.getElementById('progress-pct').textContent = '100%';
+    document.getElementById('progress-text').textContent = 'Selesai';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  /* ─────────────── Reset ─────────────── */
+  function resetSurvey() {
+    /* Reset state */
+    Object.keys(state).forEach(k => state[k] = null);
+
+    /* Reset inputs */
+    ['nama','instansi','jabatan','email','q10','q11'].forEach(id => {
+      document.getElementById(id).value = '';
+    });
+
+    /* Reset buttons */
+    document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.star-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
+    document.getElementById('q6-label').textContent = 'Klik bintang untuk memberi nilai';
+
+    /* Reset errors */
+    document.querySelectorAll('.error-msg').forEach(e => e.style.display = 'none');
+    document.querySelectorAll('.has-error').forEach(c => c.classList.remove('has-error'));
+
+    /* Show form */
+    document.getElementById('success-screen').style.display = 'none';
+    document.getElementById('main-form').style.display = 'block';
+    document.getElementById('progress-fill').style.width = '4%';
+    document.getElementById('progress-pct').textContent = '0%';
+    document.getElementById('progress-text').textContent = 'Bagian 1 dari 4';
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+
+</body>
+</html>
