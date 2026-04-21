@@ -214,6 +214,29 @@
     .question .qnum { color: var(--teal-400); margin-right: 5px; }
     .required { color: #E24B4A; margin-left: 3px; }
 
+    /* Multi-select hint badge */
+    .multi-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--teal-600);
+      background: var(--teal-50);
+      border: 1px solid var(--teal-100);
+      border-radius: 99px;
+      padding: 2px 9px;
+      margin-left: 8px;
+      vertical-align: middle;
+      letter-spacing: 0.02em;
+    }
+
+    .multi-hint svg {
+      width: 11px;
+      height: 11px;
+      fill: var(--teal-600);
+    }
+
     .input-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -261,6 +284,7 @@
 
     .options { display: flex; flex-direction: column; gap: 8px; }
 
+    /* ── Radio-style (single select) ── */
     .opt-btn {
       display: flex;
       align-items: center;
@@ -291,6 +315,7 @@
       font-weight: 500;
     }
 
+    /* Radio indicator */
     .opt-indicator {
       width: 16px;
       height: 16px;
@@ -311,6 +336,77 @@
       background: var(--teal-400);
       display: block;
     }
+
+    /* ── Checkbox-style (multi select) ── */
+    .chk-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: transparent;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text-primary);
+      text-align: left;
+      transition: all 0.15s;
+    }
+
+    .chk-btn:hover {
+      border-color: var(--teal-400);
+      background: var(--teal-50);
+      color: var(--teal-600);
+    }
+
+    .chk-btn.selected {
+      border-color: var(--teal-400);
+      background: var(--teal-50);
+      color: var(--teal-600);
+      font-weight: 500;
+    }
+
+    /* Checkbox square indicator */
+    .chk-indicator {
+      width: 16px;
+      height: 16px;
+      border-radius: 4px;
+      border: 1.5px solid currentColor;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+      background: transparent;
+    }
+
+    .chk-btn.selected .chk-indicator {
+      background: var(--teal-400);
+      border-color: var(--teal-400);
+    }
+
+    .chk-btn.selected .chk-indicator::after {
+      content: '';
+      width: 9px;
+      height: 6px;
+      border-left: 2px solid #fff;
+      border-bottom: 2px solid #fff;
+      transform: rotate(-45deg) translateY(-1px);
+      display: block;
+    }
+
+    /* Selected count badge */
+    .selected-count {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--teal-600);
+      font-weight: 500;
+      display: none;
+    }
+
+    .selected-count.visible { display: block; }
 
     .scale-row {
       display: flex;
@@ -537,18 +633,26 @@
         <div class="section-title">Produk &amp; Pembelian</div>
       </div>
 
-      <!-- Q2: Produk yang diminati -->
+      <!-- Q2: Produk yang diminati — MULTI SELECT -->
       <div class="card" id="card-q2">
-        <div class="question"><span class="qnum">02.</span>Produk / layanan yang Anda minati <span class="required">*</span></div>
-        <div class="options" id="q2">
-          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Sticker Pack</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Pin Name</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Pin Button</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Key Chain</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Student Id Card</button>
-          <button type="button" class="opt-btn" onclick="selectOpt('q2', this)"><span class="opt-indicator"></span>Tote Bag</button>
+        <div class="question">
+          <span class="qnum">02.</span>Produk / layanan yang Anda minati
+          <span class="required">*</span>
+          <span class="multi-hint">
+            <svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+            Bisa pilih lebih dari satu
+          </span>
         </div>
-        <div class="error-msg" id="err-q2">Silakan pilih salah satu opsi.</div>
+        <div class="options" id="q2">
+          <button type="button" class="chk-btn" onclick="toggleChk('q2', this)"><span class="chk-indicator"></span>Sticker Pack</button>
+          <button type="button" class="chk-btn" onclick="toggleChk('q2', this)"><span class="chk-indicator"></span>Pin Name</button>
+          <button type="button" class="chk-btn" onclick="toggleChk('q2', this)"><span class="chk-indicator"></span>Pin Button</button>
+          <button type="button" class="chk-btn" onclick="toggleChk('q2', this)"><span class="chk-indicator"></span>Key Chain</button>
+          <button type="button" class="chk-btn" onclick="toggleChk('q2', this)"><span class="chk-indicator"></span>Student Id Card</button>
+          <button type="button" class="chk-btn" onclick="toggleChk('q2', this)"><span class="chk-indicator"></span>Tote Bag</button>
+        </div>
+        <div class="selected-count" id="count-q2"></div>
+        <div class="error-msg" id="err-q2">Silakan pilih minimal satu opsi.</div>
       </div>
 
       <!-- Q3: Range harga -->
@@ -639,8 +743,39 @@
 </div>
 
 <script>
-  const state = { q2: null, q3: null, q4: null, q6: null };
+  // q2 sekarang array (multi-select), sisanya string
+  const state = { q2: [], q3: null, q4: null, q6: null };
 
+  /* ── Multi-select toggle (checkbox) ── */
+  function toggleChk(groupId, btn) {
+    const label = btn.textContent.trim();
+
+    if (btn.classList.contains('selected')) {
+      btn.classList.remove('selected');
+      state[groupId] = state[groupId].filter(v => v !== label);
+    } else {
+      btn.classList.add('selected');
+      state[groupId].push(label);
+    }
+
+    // Update count badge
+    const countEl = document.getElementById('count-' + groupId);
+    if (countEl) {
+      const n = state[groupId].length;
+      if (n > 0) {
+        countEl.textContent = n + ' produk dipilih: ' + state[groupId].join(', ');
+        countEl.classList.add('visible');
+      } else {
+        countEl.textContent = '';
+        countEl.classList.remove('visible');
+      }
+    }
+
+    if (state[groupId].length > 0) clearError(groupId);
+    updateProgress();
+  }
+
+  /* ── Single-select (radio) ── */
   function selectOpt(groupId, btn) {
     const group = document.getElementById(groupId);
     group.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
@@ -660,14 +795,20 @@
   }
 
   function updateProgress() {
-    const keys = ['q2', 'q3', 'q4', 'q6'];
-    const done = keys.filter(k => state[k] !== null).length;
-    const nama = document.getElementById('nama').value.trim();
-    const totalFields = keys.length + 1; // +1 untuk nama
-    const totalDone = done + (nama ? 1 : 0);
+    // q2 done jika ada ≥1 pilihan
+    const q2done = state.q2.length > 0 ? 1 : 0;
+    const q3done = state.q3 !== null ? 1 : 0;
+    const q4done = state.q4 !== null ? 1 : 0;
+    const q6done = state.q6 !== null ? 1 : 0;
+    const nama   = document.getElementById('nama').value.trim() ? 1 : 0;
+
+    const totalDone = q2done + q3done + q4done + q6done + nama;
+    const totalFields = 5;
     const pct = Math.round((totalDone / totalFields) * 100);
+
     document.getElementById('progress-fill').style.width = Math.max(4, pct) + '%';
     document.getElementById('progress-pct').textContent = pct + '%';
+
     const labels = ['Bagian 1 dari 3', 'Bagian 2 dari 3', 'Bagian 3 dari 3'];
     const idx = totalDone < 2 ? 0 : totalDone < 4 ? 1 : 2;
     document.getElementById('progress-text').textContent = labels[idx];
@@ -688,39 +829,44 @@
     if (errEl) errEl.style.display = 'block';
     if (cardEl) {
       cardEl.classList.add('has-error');
-      cardEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+    return cardEl;
   }
 
   function validate() {
     let valid = true;
-    let firstError = null;
+    let firstErrorCard = null;
 
+    // Nama
     const nama = document.getElementById('nama').value.trim();
     if (!nama) {
       const errEl = document.getElementById('err-identitas');
       const cardEl = document.getElementById('card-identitas');
       if (errEl) errEl.style.display = 'block';
       if (cardEl) cardEl.classList.add('has-error');
-      firstError = firstError || cardEl;
+      firstErrorCard = firstErrorCard || cardEl;
       valid = false;
     } else {
       clearError('identitas');
     }
 
-    const required = ['q2', 'q3', 'q4', 'q6'];
-    for (const k of required) {
+    // Q2 — harus pilih minimal satu
+    if (state.q2.length === 0) {
+      const card = showError('q2');
+      firstErrorCard = firstErrorCard || card;
+      valid = false;
+    }
+
+    // Q3, Q4, Q6 — single required
+    for (const k of ['q3', 'q4', 'q6']) {
       if (state[k] === null) {
-        const errEl = document.getElementById('err-' + k);
-        const cardEl = document.getElementById('card-' + k);
-        if (errEl) errEl.style.display = 'block';
-        if (cardEl) cardEl.classList.add('has-error');
-        firstError = firstError || cardEl;
+        const card = showError(k);
+        firstErrorCard = firstErrorCard || card;
         valid = false;
       }
     }
 
-    if (firstError) firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (firstErrorCard) firstErrorCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
     return valid;
   }
 
@@ -730,7 +876,7 @@
     const answers = {
       nama: document.getElementById('nama').value.trim(),
       angkatan: document.getElementById('angkatan').value.trim(),
-      produkDiminati: state.q2,
+      produkDiminati: state.q2.join(', '),   // gabung dengan koma
       rangeHarga: state.q3,
       npsScore: state.q4,
       saranProduk: document.getElementById('q5').value.trim(),
@@ -738,7 +884,10 @@
       timestamp: new Date().toLocaleString('id-ID')
     };
 
-    fetch('https://script.google.com/macros/s/AKfycbznsQOowTxFbdGBSGKKonb9qLC1Ph6IhUxkpprFY9e3S4_9UqEJqNhcGPqwIb7onedDcQ/exec', {method: 'POST', body: JSON.stringify(answers)});
+    fetch('https://script.google.com/macros/s/AKfycbznsQOowTxFbdGBSGKKonb9qLC1Ph6IhUxkpprFY9e3S4_9UqEJqNhcGPqwIb7onedDcQ/exec', {
+      method: 'POST',
+      body: JSON.stringify(answers)
+    });
 
     document.getElementById('main-form').style.display = 'none';
     const ss = document.getElementById('success-screen');
@@ -750,16 +899,24 @@
   }
 
   function resetSurvey() {
-    Object.keys(state).forEach(k => state[k] = null);
+    state.q2 = [];
+    state.q3 = null;
+    state.q4 = null;
+    state.q6 = null;
 
     document.getElementById('nama').value = '';
     document.getElementById('angkatan').value = '';
     document.getElementById('q5').value = '';
 
+    document.querySelectorAll('.chk-btn').forEach(b => b.classList.remove('selected'));
     document.querySelectorAll('.opt-btn').forEach(b => b.classList.remove('selected'));
     document.querySelectorAll('.scale-btn').forEach(b => b.classList.remove('selected'));
     document.querySelectorAll('.error-msg').forEach(e => e.style.display = 'none');
     document.querySelectorAll('.has-error').forEach(c => c.classList.remove('has-error'));
+    document.querySelectorAll('.selected-count').forEach(e => {
+      e.textContent = '';
+      e.classList.remove('visible');
+    });
 
     document.getElementById('success-screen').style.display = 'none';
     document.getElementById('main-form').style.display = 'block';
